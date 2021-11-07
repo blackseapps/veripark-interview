@@ -73,6 +73,8 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$rootProject.ext.mockitoVersion"
     testAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
 
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.65'
+
     // UI Testing
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
