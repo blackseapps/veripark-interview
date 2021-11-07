@@ -19,7 +19,7 @@ import interview.veripark.com.utils.CommonUtils;
  * This is an interview project.
  */
 
-public abstract class BaseFragment extends Fragment implements BaseMvpView{
+public abstract class BaseFragment extends Fragment implements BaseMvpView {
 
     private BaseActivity mActivity;
     private Unbinder mUnBinder;
@@ -123,6 +123,14 @@ public abstract class BaseFragment extends Fragment implements BaseMvpView{
 
     public void setUnBinder(Unbinder unBinder) {
         mUnBinder = unBinder;
+    }
+
+    public String getBundleData(String key) {
+        Bundle extras = getArguments();
+        if (extras != null) {
+            return extras.getString(key);
+        } else
+            return null;
     }
 
     public interface Callback {

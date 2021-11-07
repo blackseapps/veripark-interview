@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Veri Park Interview</string>
+
+
+    <string name="stock_and_index_text">Hisse ve Endeksler</string>
+    <string name="increasing_text">Yükselenler</string>
+    <string name="decreasing_text">Düşenler</string>
+    <string name="volume40_text">Hacme Göre - 30</string>
+    <string name="volume50_text">Hacme Göre - 50</string>
+    <string name="volume100_text">Hacme Göre - 100</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+
+
+    <string name="filter_all">all</string>
+    <string name="filter_increasing">increasing</string>
+    <string name="filter_decreasing">decreasing</string>
+    <string name="filter_volume30">volume30</string>
+    <string name="filter_volume50">volume50</string>
+    <string name="filter_volume100">volume100</string>
+
 </resources>

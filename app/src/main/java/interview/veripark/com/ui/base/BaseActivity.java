@@ -15,6 +15,8 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import javax.inject.Inject;
+
 import butterknife.Unbinder;
 import interview.veripark.com.MainApplication;
 import interview.veripark.com.R;
@@ -34,6 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseMvpV
     private Unbinder mUnBinder;
 
     private ActivityComponent mActivityComponent;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -2,14 +2,22 @@ package interview.veripark.com.di.module;
 
 import android.content.Context;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import interview.veripark.com.R;
 import interview.veripark.com.di.PerActivity;
 import interview.veripark.com.ui.activity.splash.SplashMvpPresenter;
 import interview.veripark.com.ui.activity.splash.SplashMvpView;
 import interview.veripark.com.ui.activity.splash.SplashPresenter;
+import interview.veripark.com.ui.fragment.stock.StockAndIndexMvpPresenter;
+import interview.veripark.com.ui.fragment.stock.StockAndIndexMvpView;
+import interview.veripark.com.ui.fragment.stock.StockAndIndexPresenter;
 import interview.veripark.com.ui.main.MainMvpPresenter;
 import interview.veripark.com.ui.main.MainMvpView;
 import interview.veripark.com.ui.main.MainPresenter;
@@ -52,4 +60,13 @@ public class ActivityModule {
             SplashPresenter<SplashMvpView> presenter) {
         return presenter;
     }
+
+    @Provides
+    @PerActivity
+    StockAndIndexMvpPresenter<StockAndIndexMvpView> provideStockAndIndexPresenter(
+            StockAndIndexPresenter<StockAndIndexMvpView> presenter) {
+        return presenter;
+    }
+
+
 }

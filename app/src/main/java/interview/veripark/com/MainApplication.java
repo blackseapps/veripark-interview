@@ -2,6 +2,9 @@ package interview.veripark.com;
 
 import android.app.Application;
 
+import javax.inject.Inject;
+
+import interview.veripark.com.data.DataManager;
 import interview.veripark.com.di.component.ApplicationComponent;
 import interview.veripark.com.di.component.DaggerApplicationComponent;
 import interview.veripark.com.di.module.ApplicationModule;
@@ -14,6 +17,9 @@ import interview.veripark.com.di.module.ApplicationModule;
 
 public class MainApplication extends Application {
 
+
+    @Inject
+    DataManager manager;
 
     private ApplicationComponent applicationComponent;
 
