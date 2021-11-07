@@ -3,6 +3,8 @@ package interview.veripark.com.ui.base;
 import javax.inject.Inject;
 
 import interview.veripark.com.data.DataManager;
+import interview.veripark.com.utils.rx.SchedulerProvider;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by mertKaradeniz on 7.11.2021
@@ -13,12 +15,16 @@ import interview.veripark.com.data.DataManager;
 public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V> {
 
     private final DataManager mDataManager;
+    private final SchedulerProvider mSchedulerProvider;
+    private final CompositeDisposable mCompositeDisposable;
 
     private V mMvpView;
 
     @Inject
-    public BasePresenter(DataManager mDataManager) {
+    public BasePresenter(DataManager mDataManager, SchedulerProvider mSchedulerProvider, CompositeDisposable mCompositeDisposable) {
         this.mDataManager = mDataManager;
+        this.mSchedulerProvider = mSchedulerProvider;
+        this.mCompositeDisposable = mCompositeDisposable;
     }
 
     public DataManager getDataManager() {
@@ -38,8 +44,17 @@ public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V>
         return mMvpView;
     }
 
+    public SchedulerProvider getSchedulerProvider() {
+        return mSchedulerProvider;
+    }
+
+    public CompositeDisposable getCompositeDisposable() {
+        return mCompositeDisposable;
+    }
+
     @Override
     public void onDetach() {
+        mCompositeDisposable.dispose();
         mMvpView = null;
     }
 

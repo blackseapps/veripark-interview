@@ -21,6 +21,9 @@ import interview.veripark.com.ui.fragment.stock.StockAndIndexPresenter;
 import interview.veripark.com.ui.main.MainMvpPresenter;
 import interview.veripark.com.ui.main.MainMvpView;
 import interview.veripark.com.ui.main.MainPresenter;
+import interview.veripark.com.utils.rx.AppSchedulerProvider;
+import interview.veripark.com.utils.rx.SchedulerProvider;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by mertKaradeniz on 7.11.2021
@@ -46,6 +49,17 @@ public class ActivityModule {
     AppCompatActivity provideActivity() {
         return mActivity;
     }
+
+    @Provides
+    CompositeDisposable provideCompositeDisposable() {
+        return new CompositeDisposable();
+    }
+
+    @Provides
+    SchedulerProvider provideSchedulerProvider() {
+        return new AppSchedulerProvider();
+    }
+
 
     @Provides
     @PerActivity

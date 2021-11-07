@@ -7,6 +7,8 @@ import javax.inject.Inject;
 
 import interview.veripark.com.data.DataManager;
 import interview.veripark.com.ui.base.BasePresenter;
+import interview.veripark.com.utils.rx.SchedulerProvider;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by mertKaradeniz on 7.11.2021
@@ -20,8 +22,8 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
     private long milliseconds = 2000;
 
     @Inject
-    public SplashPresenter(DataManager dataManager) {
-        super(dataManager);
+    public SplashPresenter(DataManager mDataManager, SchedulerProvider mSchedulerProvider, CompositeDisposable mCompositeDisposable) {
+        super(mDataManager, mSchedulerProvider, mCompositeDisposable);
     }
 
     @Override

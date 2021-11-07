@@ -4,6 +4,8 @@ import javax.inject.Inject;
 
 import interview.veripark.com.data.DataManager;
 import interview.veripark.com.ui.base.BasePresenter;
+import interview.veripark.com.utils.rx.SchedulerProvider;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by mertKaradeniz on 7.11.2021
@@ -15,8 +17,7 @@ public class StockAndIndexPresenter<V extends StockAndIndexMvpView> extends Base
         implements StockAndIndexMvpPresenter<V> {
 
     @Inject
-    public StockAndIndexPresenter(DataManager mDataManager) {
-        super(mDataManager);
+    public StockAndIndexPresenter(DataManager mDataManager, SchedulerProvider mSchedulerProvider, CompositeDisposable mCompositeDisposable) {
+        super(mDataManager, mSchedulerProvider, mCompositeDisposable);
     }
-
 }
