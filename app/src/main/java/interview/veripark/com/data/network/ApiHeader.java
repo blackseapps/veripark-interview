@@ -21,14 +21,12 @@ public class ApiHeader {
 
     @Inject
     public ApiHeader( ProtectedApiHeader protectedApiHeader) {
-
         mProtectedApiHeader = protectedApiHeader;
     }
 
     public ProtectedApiHeader getProtectedApiHeader() {
         return mProtectedApiHeader;
     }
-
 
     public static final class ProtectedApiHeader {
 

@@ -1,51 +1,21 @@
 package interview.veripark.com.ui.main;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
-import java.nio.charset.StandardCharsets;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.Security;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.ShortBufferException;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -53,7 +23,6 @@ import butterknife.ButterKnife;
 import interview.veripark.com.R;
 import interview.veripark.com.ui.base.BaseActivity;
 import interview.veripark.com.ui.fragment.stock.StockAndIndexFragment;
-import interview.veripark.com.utils.AESEncryptionAndDecryptionUtils;
 
 /**
  * Created by mertKaradeniz on 6.11.2021
@@ -62,10 +31,6 @@ import interview.veripark.com.utils.AESEncryptionAndDecryptionUtils;
  */
 
 public class MainActivity extends BaseActivity implements MainMvpView, NavigationView.OnNavigationItemSelectedListener {
-
-
-    String aesKey = "TcikJHXCFEFfn/Xi2pinro+w9kkq5PVHJovKnpeoyiM=";
-    String aesVI = "FytQBY45rlQCUBkthnsbew==";
 
     @Inject
     MainMvpPresenter<MainMvpView> mPresenter;
@@ -94,9 +59,6 @@ public class MainActivity extends BaseActivity implements MainMvpView, Navigatio
         mPresenter.onAttach(this);
         setUpNavigation();
         setUp();
-
-        String output = AESEncryptionAndDecryptionUtils.encrypt(aesKey, aesVI, "all");
-        System.out.println(output);
     }
 
     @Override

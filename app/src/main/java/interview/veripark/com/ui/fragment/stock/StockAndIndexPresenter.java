@@ -24,14 +24,17 @@ public class StockAndIndexPresenter<V extends StockAndIndexMvpView> extends Base
 
     @Override
     public void onHandleStockRequest(StockRequest stockRequest) {
+        getMvpView().showLoading();
 
         getCompositeDisposable().add(getDataManager()
-                .doStockResponseApiCall(stockRequest.toJSONString(getDataManager().getAesKey(), getDataManager().getAesVI()))
+                .doStockResponseApiCall(stockRequest.toJSONStringAndEncoded(getDataManager().getAesKey(), getDataManager().getAesVI()))
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(response -> {
-                    System.out.println(response.getStocks());
+
+                    System.out.println(response.getStocks().get(0).getPrice());
                     System.out.println(response.getStatus().getError().getMessage());
+
 
                    /* getDataManager().updateApiHeader(
                             response.getAesKey(),
@@ -43,12 +46,13 @@ public class StockAndIndexPresenter<V extends StockAndIndexMvpView> extends Base
                         return;
                     }
 
-
+                    getMvpView().hideLoading();
                 }, throwable -> {
                     if (!isViewAttached()) {
                         return;
                     }
 
+                    getMvpView().hideLoading();
                 }));
     }
 }
