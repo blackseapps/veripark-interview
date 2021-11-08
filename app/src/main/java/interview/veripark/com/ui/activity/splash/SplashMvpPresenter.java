@@ -1,5 +1,6 @@
 package interview.veripark.com.ui.activity.splash;
 
+import interview.veripark.com.data.network.model.HandShakeRequest;
 import interview.veripark.com.ui.base.BaseMvpPresenter;
 
 /**
@@ -9,4 +10,6 @@ import interview.veripark.com.ui.base.BaseMvpPresenter;
  */
 
 public interface SplashMvpPresenter<V extends SplashMvpView> extends BaseMvpPresenter<V> {
+
+    void onHandShakeStart(HandShakeRequest shakeRequest);
 }

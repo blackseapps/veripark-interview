@@ -155,6 +155,8 @@ public class MainActivity extends BaseActivity implements MainMvpView, Navigatio
                 fragment = StockAndIndexFragment.newInstance(args);
                 break;
             default:
+                args.putString("value", getResources().getString(R.string.filter_all));
+                fragment = StockAndIndexFragment.newInstance(args);
                 break;
         }
 

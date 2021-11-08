@@ -3,6 +3,9 @@ package interview.veripark.com.data.network.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Objects;
 
 /**
@@ -93,5 +96,19 @@ public class HandShakeRequest {
     @Override
     public int hashCode() {
         return Objects.hash(deviceId, systemVersion, platformName, deviceModel, manifacturer);
+    }
+
+    public String toJSONString() {
+        JSONObject js = new JSONObject();
+        try {
+            js.put("deviceId", getDeviceId());
+            js.put("systemVersion", getSystemVersion());
+            js.put("platformName", getPlatformName());
+            js.put("deviceModel", getDeviceModel());
+            js.put("manifacturer", getManifacturer());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return js.toString();
     }
 }

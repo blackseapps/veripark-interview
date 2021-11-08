@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import interview.veripark.com.di.ApiInfo;
 
@@ -13,14 +14,14 @@ import interview.veripark.com.di.ApiInfo;
  * This is an interview project.
  */
 
+@Singleton
 public class ApiHeader {
 
     private ProtectedApiHeader mProtectedApiHeader;
-    private PublicApiHeader mPublicApiHeader;
 
     @Inject
-    public ApiHeader(PublicApiHeader publicApiHeader, ProtectedApiHeader protectedApiHeader) {
-        mPublicApiHeader = publicApiHeader;
+    public ApiHeader( ProtectedApiHeader protectedApiHeader) {
+
         mProtectedApiHeader = protectedApiHeader;
     }
 
@@ -28,29 +29,6 @@ public class ApiHeader {
         return mProtectedApiHeader;
     }
 
-    public PublicApiHeader getPublicApiHeader() {
-        return mPublicApiHeader;
-    }
-
-    public static final class PublicApiHeader {
-
-        @Expose
-        @SerializedName("authorization")
-        private String authorization;
-
-        @Inject
-        public PublicApiHeader(@ApiInfo String authorization) {
-            this.authorization = authorization;
-        }
-
-        public String getApiKey() {
-            return authorization;
-        }
-
-        public void setApiKey(String authorization) {
-            this.authorization = authorization;
-        }
-    }
 
     public static final class ProtectedApiHeader {
 

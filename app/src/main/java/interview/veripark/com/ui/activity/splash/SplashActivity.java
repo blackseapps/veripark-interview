@@ -8,8 +8,10 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import interview.veripark.com.R;
+import interview.veripark.com.data.network.model.HandShakeRequest;
 import interview.veripark.com.ui.base.BaseActivity;
 import interview.veripark.com.ui.main.MainActivity;
+import interview.veripark.com.utils.DeviceAndSystemInfoUtils;
 
 /**
  * Created by mertKaradeniz on 7.11.2021
@@ -17,7 +19,7 @@ import interview.veripark.com.ui.main.MainActivity;
  * This is an interview project.
  */
 
-public class SplashActivity extends BaseActivity implements SplashMvpView{
+public class SplashActivity extends BaseActivity implements SplashMvpView {
 
 
     @Inject
@@ -36,6 +38,8 @@ public class SplashActivity extends BaseActivity implements SplashMvpView{
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this));
         mPresenter.onAttach(SplashActivity.this);
+
+        mPresenter.onHandShakeStart(initHandShake());
     }
 
     @Override
@@ -51,9 +55,18 @@ public class SplashActivity extends BaseActivity implements SplashMvpView{
         super.onDestroy();
     }
 
-
     @Override
     protected void setUp() {
 
+    }
+
+    private HandShakeRequest initHandShake() {
+        return new HandShakeRequest(
+                DeviceAndSystemInfoUtils.getDeviceId(SplashActivity.this),
+                DeviceAndSystemInfoUtils.getAppVersionName(this),
+                DeviceAndSystemInfoUtils.getPlatformName(),
+                DeviceAndSystemInfoUtils.getDeviceName(),
+                DeviceAndSystemInfoUtils.getManufacturer()
+        );
     }
 }

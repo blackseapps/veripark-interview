@@ -2,10 +2,10 @@ package interview.veripark.com.data.network;
 
 import interview.veripark.com.data.network.model.DetailRequest;
 import interview.veripark.com.data.network.model.DetailResponse;
-import interview.veripark.com.data.network.model.HandShakeRequest;
 import interview.veripark.com.data.network.model.HandShakeResponse;
 import interview.veripark.com.data.network.model.StockRequest;
 import interview.veripark.com.data.network.model.StockResponse;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 
 /**
@@ -16,11 +16,12 @@ import io.reactivex.Single;
 
 public interface ApiHelper {
 
+    ApiHeader getApiHeader();
 
-    Single<HandShakeResponse> doHandShakeStartApiCall(HandShakeRequest request);
+    Observable<HandShakeResponse> doHandShakeStartApiCall(String request);
 
-    Single<StockResponse> doStockResponseApiCall(StockRequest request);
+    Observable<StockResponse> doStockResponseApiCall(String request);
 
-    Single<DetailResponse> doDetailResponseApiCall(DetailRequest request);
+    Observable<DetailResponse> doDetailResponseApiCall(String request);
 
 }

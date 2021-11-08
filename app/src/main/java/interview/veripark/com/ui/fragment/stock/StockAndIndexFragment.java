@@ -13,8 +13,12 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import interview.veripark.com.R;
+import interview.veripark.com.data.network.model.HandShakeRequest;
+import interview.veripark.com.data.network.model.StockRequest;
 import interview.veripark.com.di.component.ActivityComponent;
+import interview.veripark.com.ui.activity.splash.SplashActivity;
 import interview.veripark.com.ui.base.BaseFragment;
+import interview.veripark.com.utils.DeviceAndSystemInfoUtils;
 
 /**
  * Created by mertKaradeniz on 7.11.2021
@@ -49,9 +53,11 @@ public class StockAndIndexFragment extends BaseFragment implements StockAndIndex
             mPresenter.onAttach(this);
             setHasOptionsMenu(true);
         }
+        String data = getBundleData("value");
 
-        Log.i("Data", getBundleData("value"));
+        Log.i("Data", data);
 
+        mPresenter.onHandleStockRequest(initStockRequest(data));
         return view;
     }
 
@@ -63,5 +69,9 @@ public class StockAndIndexFragment extends BaseFragment implements StockAndIndex
     @Override
     public void openActivityOnTokenExpire() {
 
+    }
+
+    private StockRequest initStockRequest(String value) {
+        return new StockRequest(value);
     }
 }

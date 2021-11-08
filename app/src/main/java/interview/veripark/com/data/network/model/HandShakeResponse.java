@@ -93,4 +93,15 @@ public class HandShakeResponse {
     public int hashCode() {
         return Objects.hash(aesKey, aesIV, authorization, lifeTime, status);
     }
+
+    @Override
+    public String toString() {
+        return "HandShakeResponse{" +
+                "aesKey='" + aesKey + '\'' +
+                ", aesIV='" + aesIV + '\'' +
+                ", authorization='" + authorization + '\'' +
+                ", lifeTime='" + lifeTime + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }

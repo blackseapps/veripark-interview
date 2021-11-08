@@ -11,6 +11,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import interview.veripark.com.R;
+import interview.veripark.com.di.ApplicationContext;
 import interview.veripark.com.di.PerActivity;
 import interview.veripark.com.ui.activity.splash.SplashMvpPresenter;
 import interview.veripark.com.ui.activity.splash.SplashMvpView;
@@ -41,6 +42,7 @@ public class ActivityModule {
     }
 
     @Provides
+    @ApplicationContext
     Context provideContext() {
         return mActivity;
     }
