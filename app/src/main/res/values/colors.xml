@@ -11,4 +11,10 @@
 
 
     <color name="progress_bar">#2a2a2a</color>
+
+    <color name="tableRowsTitle">#E4E4E4</color>
+    <color name="tableRows">#F4F4F4</color>
+    <color name="green">#4CFF00</color>
+    <color name="red">#DC0F0F</color>
+
 </resources>

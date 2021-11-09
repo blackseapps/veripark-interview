@@ -20,7 +20,7 @@ public class ApiHeader {
     private ProtectedApiHeader mProtectedApiHeader;
 
     @Inject
-    public ApiHeader( ProtectedApiHeader protectedApiHeader) {
+    public ApiHeader(ProtectedApiHeader protectedApiHeader) {
         mProtectedApiHeader = protectedApiHeader;
     }
 
@@ -34,8 +34,19 @@ public class ApiHeader {
         @SerializedName("authorization")
         private String authorization;
 
-        public ProtectedApiHeader(String authorization) {
+        @Expose
+        @SerializedName("aesKey")
+        private String aesKey;
+
+        @Expose
+        @SerializedName("aesIV")
+        private String aesIV;
+
+
+        public ProtectedApiHeader(String authorization, String aesKey, String aesIV) {
             this.authorization = authorization;
+            this.aesKey = aesKey;
+            this.aesIV = aesIV;
         }
 
         public String getAuthorization() {
@@ -44,6 +55,22 @@ public class ApiHeader {
 
         public void setAuthorization(String authorization) {
             this.authorization = authorization;
+        }
+
+        public String getAesKey() {
+            return aesKey;
+        }
+
+        public void setAesKey(String aesKey) {
+            this.aesKey = aesKey;
+        }
+
+        public String getAesIV() {
+            return aesIV;
+        }
+
+        public void setAesIV(String aesIV) {
+            this.aesIV = aesIV;
         }
     }
 }

@@ -11,12 +11,14 @@
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
 
-
     <string name="filter_all">all</string>
     <string name="filter_increasing">increasing</string>
     <string name="filter_decreasing">decreasing</string>
     <string name="filter_volume30">volume30</string>
     <string name="filter_volume50">volume50</string>
     <string name="filter_volume100">volume100</string>
+
+    <string name="dash">-</string>
+
 
 </resources>

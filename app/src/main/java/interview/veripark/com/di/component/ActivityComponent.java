@@ -3,6 +3,7 @@ package interview.veripark.com.di.component;
 import dagger.Component;
 import interview.veripark.com.di.PerActivity;
 import interview.veripark.com.di.module.ActivityModule;
+import interview.veripark.com.ui.activity.detail.DetailActivity;
 import interview.veripark.com.ui.activity.splash.SplashActivity;
 import interview.veripark.com.ui.fragment.stock.StockAndIndexFragment;
 import interview.veripark.com.ui.main.MainActivity;
@@ -22,4 +23,6 @@ public interface ActivityComponent {
     void inject(SplashActivity splashActivity);
 
     void inject(StockAndIndexFragment stockAndIndexFragment);
+
+    void inject(DetailActivity detailActivity);
 }

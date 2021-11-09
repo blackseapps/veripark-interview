@@ -52,33 +52,15 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
                             response.getAuthorization()
                     );
 
-                  /* getDataManager().updateUserInfo(
-                            response.getAccessToken(),
-                            response.getUserId(),
-                            DataManager.LoggedInMode.LOGGED_IN_MODE_SERVER,
-                            response.getUserName(),
-                            response.getUserEmail(),
-                            response.getGoogleProfilePicUrl());*/
-
                     if (!isViewAttached()) {
                         return;
                     }
-
                     getMvpView().openMainActivity();
-
                 }, throwable -> {
-
                     if (!isViewAttached()) {
                         return;
                     }
-
                     getMvpView().hideLoading();
-
-                    // handle the login error here
-                    //  if (throwable instanceof ANError) {
-                    //   ANError anError = (ANError) throwable;
-                    //   handleApiError(anError);
-                    // }
                 }));
 
 

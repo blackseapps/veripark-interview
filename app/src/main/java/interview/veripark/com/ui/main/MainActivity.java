@@ -63,8 +63,11 @@ public class MainActivity extends BaseActivity implements MainMvpView, Navigatio
 
     @Override
     protected void setUp() {
+        Bundle args = new Bundle();
+        args.putString("value", getResources().getString(R.string.filter_all));
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, StockAndIndexFragment.newInstance(args)).commit();
     }
-
 
 
     public void setUpNavigation() {

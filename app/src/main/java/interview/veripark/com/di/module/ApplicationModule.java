@@ -12,11 +12,15 @@ import interview.veripark.com.data.DataManager;
 import interview.veripark.com.data.network.ApiHeader;
 import interview.veripark.com.data.network.ApiHelper;
 import interview.veripark.com.data.network.AppApiHelper;
+import interview.veripark.com.data.network.model.HandShakeResponse;
 import interview.veripark.com.data.prefs.AppPreferencesHelper;
 import interview.veripark.com.data.prefs.PreferencesHelper;
+import interview.veripark.com.di.AesKey;
+import interview.veripark.com.di.AesVI;
 import interview.veripark.com.di.ApiInfo;
 import interview.veripark.com.di.ApplicationContext;
 import interview.veripark.com.di.PreferenceInfo;
+import interview.veripark.com.di.ProtectedHeader;
 import interview.veripark.com.utils.AppConstants;
 
 /**
@@ -70,9 +74,23 @@ public class ApplicationModule {
     }
 
     @Provides
+    @AesKey
+    String provideAesKey() {
+        return "";
+    }
+
+
+    @Provides
+    @AesVI
+    String provideAesVI() {
+        return "";
+    }
+
+
+    @Provides
     @Singleton
-    ApiHeader.ProtectedApiHeader provideProtectedApiHeader(@ApiInfo String apiKey) {
-        return new ApiHeader.ProtectedApiHeader(apiKey);
+    ApiHeader.ProtectedApiHeader provideProtectedApiHeader(@ApiInfo String apiKey, @AesKey String aesKey, @AesVI String aesVI) {
+        return new ApiHeader.ProtectedApiHeader(apiKey, aesKey, aesVI);
     }
 
 
@@ -81,6 +99,5 @@ public class ApplicationModule {
     PreferencesHelper providePreferencesHelper(AppPreferencesHelper appPreferencesHelper) {
         return appPreferencesHelper;
     }
-
 
 }

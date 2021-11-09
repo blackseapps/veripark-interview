@@ -5,12 +5,16 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Objects;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * Created by mertKaradeniz on 7.11.2021
  * <p>
  * This is an interview project.
  */
 
+@Singleton
 public class HandShakeResponse {
 
     @Expose
@@ -33,6 +37,7 @@ public class HandShakeResponse {
     @SerializedName("status")
     private Status status;
 
+    @Inject
     public HandShakeResponse(String aesKey, String aesIV, String authorization, String lifeTime, Status status) {
         this.aesKey = aesKey;
         this.aesIV = aesIV;

@@ -96,5 +96,9 @@ public class AppDataManager implements DataManager {
         mPreferencesHelper.setAesVI(aesVI);
 
         mApiHelper.getApiHeader().getProtectedApiHeader().setAuthorization(token);
+        mApiHelper.getApiHeader().getProtectedApiHeader().setAesIV(aesVI);
+        mApiHelper.getApiHeader().getProtectedApiHeader().setAesKey(aesKey);
+
+
     }
 }

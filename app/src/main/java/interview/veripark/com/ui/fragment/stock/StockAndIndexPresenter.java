@@ -35,6 +35,9 @@ public class StockAndIndexPresenter<V extends StockAndIndexMvpView> extends Base
                     System.out.println(response.getStocks().get(0).getPrice());
                     System.out.println(response.getStatus().getError().getMessage());
 
+                    if (response != null && response.getStocks() != null) {
+                        getMvpView().updateStocks(response.getStocks());
+                    }
 
                    /* getDataManager().updateApiHeader(
                             response.getAesKey(),

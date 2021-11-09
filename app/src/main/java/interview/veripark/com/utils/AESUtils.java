@@ -1,19 +1,7 @@
 package interview.veripark.com.utils;
 
-
-import android.os.Build;
-
-
-import androidx.annotation.RequiresApi;
-
 import org.bouncycastle.util.encoders.Base64;
-
-import java.security.SecureRandom;
-import java.util.Arrays;
-
-
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -28,14 +16,13 @@ public class AESUtils {
 
     private static final String HEXES = "0123456789ABCDEF";
 
-
     public static byte[] encrypt(String aesKey, String aesVI, String plainText) throws Exception {
         byte[] aesKeyBytes = android.util.Base64.decode(aesKey, android.util.Base64.DEFAULT);
         byte[] aesVIBytes = android.util.Base64.decode(aesVI, android.util.Base64.DEFAULT);
 
         SecretKey key = new SecretKeySpec(aesKeyBytes, "AES");
 
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
         SecretKeySpec keySpec = new SecretKeySpec(key.getEncoded(), "AES");
         IvParameterSpec ivSpec = new IvParameterSpec(aesVIBytes);
 
@@ -51,7 +38,7 @@ public class AESUtils {
 
         SecretKey key = new SecretKeySpec(aesKeyBytes, "AES");
 
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
         SecretKeySpec keySpec = new SecretKeySpec(key.getEncoded(), "AES");
         IvParameterSpec ivSpec = new IvParameterSpec(aesVIBytes);
         cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
@@ -74,7 +61,6 @@ public class AESUtils {
         System.out.println("aesKeyBytes: " + getHex(aesKeyBytes));
         System.out.println("aesVIBytes: " + getHex(aesVIBytes));
         System.out.println("output: " + output);
-
     }
 
     static String getHex(byte[] raw) {
