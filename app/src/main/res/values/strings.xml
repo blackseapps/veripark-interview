@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Veri Park Interview</string>
+    <string name="app_name">IMKB Hisse Senetleri ve Endeksler</string>
 
 
     <string name="stock_and_index_text">Hisse ve Endeksler</string>
@@ -32,6 +32,10 @@
     <string name="isUp_text">Değişim</string>
 
     <string name="dash">-</string>
+    <string name="error_message">Bir sorun oluştu.</string>
+    <string name="search_text">Ara</string>
+    <string name="header_title_text">VERIPARK</string>
+    <string name="header_sub_title_text">IMKB Hisse Senetleri/Endeksler</string>
 
 
 </resources>

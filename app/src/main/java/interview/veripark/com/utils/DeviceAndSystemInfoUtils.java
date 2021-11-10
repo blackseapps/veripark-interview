@@ -15,13 +15,26 @@ import android.provider.Settings;
 
 public class DeviceAndSystemInfoUtils {
 
+    private static DeviceAndSystemInfoUtils single_instance = null;
+
+    private Context context;
+
+    private DeviceAndSystemInfoUtils(Context context) {
+        this.context = context;
+    }
+
+    public static DeviceAndSystemInfoUtils getInstance(Context context) {
+        if (single_instance == null)
+            single_instance = new DeviceAndSystemInfoUtils(context);
+        return single_instance;
+    }
 
     @SuppressLint("HardwareIds")
-    public static String getDeviceId(Context context) {
+    public String getDeviceId() {
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
-    public static String getAppVersionName(Context context) {
+    public String getAppVersionName() {
         String versionName = "1.0.0";
         try {
             PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
@@ -32,20 +45,20 @@ public class DeviceAndSystemInfoUtils {
         return versionName;
     }
 
-    public static String getPlatformName() {
+    public String getPlatformName() {
         return "Android";
     }
 
-    public static String getDeviceName() {
+    public String getDeviceName() {
         String model = Build.MODEL;
         return capitalize(model);
     }
 
-    public static String getManufacturer() {
+    public String getManufacturer() {
         return Build.MANUFACTURER;
     }
 
-    private static String capitalize(String s) {
+    private String capitalize(String s) {
         if (s == null || s.length() == 0) {
             return "";
         }

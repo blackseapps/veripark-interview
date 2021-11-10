@@ -62,11 +62,11 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     private HandShakeRequest initHandShake() {
         return new HandShakeRequest(
-                DeviceAndSystemInfoUtils.getDeviceId(SplashActivity.this),
-                DeviceAndSystemInfoUtils.getAppVersionName(this),
-                DeviceAndSystemInfoUtils.getPlatformName(),
-                DeviceAndSystemInfoUtils.getDeviceName(),
-                DeviceAndSystemInfoUtils.getManufacturer()
+                DeviceAndSystemInfoUtils.getInstance(this).getDeviceId(),
+                DeviceAndSystemInfoUtils.getInstance(this).getAppVersionName(),
+                DeviceAndSystemInfoUtils.getInstance(this).getPlatformName(),
+                DeviceAndSystemInfoUtils.getInstance(this).getDeviceName(),
+                DeviceAndSystemInfoUtils.getInstance(this).getManufacturer()
         );
     }
 }

@@ -5,8 +5,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import interview.veripark.com.data.DataManager;
+import interview.veripark.com.data.network.model.ApiError;
 import interview.veripark.com.data.network.model.DetailResponse;
 import interview.veripark.com.data.network.model.StockRequest;
+import interview.veripark.com.ui.base.BaseMvpPresenter;
 import interview.veripark.com.ui.base.BasePresenter;
 import interview.veripark.com.utils.rx.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
@@ -35,11 +37,17 @@ public class StockAndIndexPresenter<V extends StockAndIndexMvpView> extends Base
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(response -> {
 
-                    System.out.println(response.getStocks().get(0).getPrice());
-                    System.out.println(response.getStatus().getError().getMessage());
+                    if (response.getStatus().getIsSuccess()) {
+                        System.out.println(response.getStocks().get(0).getPrice());
+                        System.out.println(response.getStatus().getError().getMessage());
 
-                    if (response != null && response.getStocks() != null) {
-                        getMvpView().updateStocks(response.getStocks());
+                        if (response != null && response.getStocks() != null) {
+                            getMvpView().updateStocks(response.getStocks());
+                        }
+
+                    } else {
+                        handleApiError(response.getStatus(), this::onHandleStockRequest, value);
+                        System.out.println("response" + response.getStatus().getError().getMessage());
                     }
 
                     if (!isViewAttached()) {
@@ -47,17 +55,27 @@ public class StockAndIndexPresenter<V extends StockAndIndexMvpView> extends Base
                     }
 
                     getMvpView().hideLoading();
+
+
                 }, throwable -> {
                     if (!isViewAttached()) {
                         return;
                     }
 
                     getMvpView().hideLoading();
+                    System.out.println("throwable2 :" + throwable.getMessage());
+
+                    // if (throwable instanceof ApiError) {
+                    //     ApiError anError = (ApiError) throwable;
+                    ///     handleApiError(anError);
+                    /// }
                 }));
     }
 
     private StockRequest initStockRequest(String value) {
         return new StockRequest(getAesEncryptValue(value));
     }
+
+
 
 }

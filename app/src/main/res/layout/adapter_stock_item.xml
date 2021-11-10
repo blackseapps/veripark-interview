@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-
         tools:ignore="MissingConstraints">
 
         <TextView
@@ -18,8 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="15sp"
-            android:text="Sembol" />
+            android:text="@string/symbol_text"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/columnTwo"
@@ -27,8 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="15sp"
-            android:text="Fiyat" />
+            android:text="@string/price_text"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/columnThree"
@@ -36,8 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="15sp"
-            android:text="Fark" />
+            android:text="@string/change_text"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/columnFour"
@@ -45,8 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="15sp"
-            android:text="Hacim" />
+            android:text="@string/volume_text"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/columnFive"
@@ -54,8 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="15sp"
-            android:text="Alış" />
+            android:text="@string/bid_text"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/columnSix"
@@ -63,8 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="15sp"
-            android:text="Satış" />
+            android:text="@string/offer_text"
+            android:textSize="15sp" />
 
 
         <LinearLayout
@@ -81,17 +80,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textSize="15sp"
-                android:text="Değişim" />
+                android:text="@string/isUp_text"
+                android:textSize="15sp" />
 
             <ImageView
                 android:id="@+id/columnNine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:visibility="gone"
-
-                />
+                android:visibility="gone" />
         </LinearLayout>
 
     </LinearLayout>

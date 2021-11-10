@@ -1,9 +1,23 @@
 package interview.veripark.com.ui.base;
 
-import javax.inject.Inject;
+import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
+
+import javax.inject.Inject;
+import javax.net.ssl.HttpsURLConnection;
+
+import interview.veripark.com.R;
 import interview.veripark.com.data.DataManager;
+import interview.veripark.com.data.network.model.ApiError;
+import interview.veripark.com.data.network.model.HandShakeRequest;
+import interview.veripark.com.data.network.model.Status;
+import interview.veripark.com.ui.activity.splash.SplashActivity;
 import interview.veripark.com.utils.AESUtils;
+import interview.veripark.com.utils.AppConstants;
+import interview.veripark.com.utils.DeviceAndSystemInfoUtils;
 import interview.veripark.com.utils.rx.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -15,11 +29,15 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V> {
 
+    private static final String TAG = "BasePresenter";
+
     private final DataManager mDataManager;
     private final SchedulerProvider mSchedulerProvider;
     private final CompositeDisposable mCompositeDisposable;
 
     private V mMvpView;
+
+    CallBackApi callBackApi;
 
     @Inject
     public BasePresenter(DataManager mDataManager, SchedulerProvider mSchedulerProvider, CompositeDisposable mCompositeDisposable) {
@@ -79,6 +97,67 @@ public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V>
             e.printStackTrace();
         }
         return output;
+    }
+
+    @Override
+    public void handleApiError(Status error, CallBackApi callBackApi, String params) {
+
+        if (error == null || error.getError().getMessage() == null) {
+            getMvpView().onError(R.string.error_message);
+            return;
+        }
+
+        try {
+
+            switch (error.getError().getCode()) {
+                case AppConstants.HTTP_UNAUTHORIZED:
+                    getMvpView().onError("Authorization Token Updated.");
+                    updateApiHeader(params);
+                    break;
+                default:
+                    getMvpView().onError(error.getError().getMessage());
+            }
+        } catch (JsonSyntaxException | NullPointerException e) {
+            Log.e(TAG, "handleApiError", e);
+            // getMvpView().onError(R.string.api_default_error);
+        }
+    }
+
+    @Override
+    public void handleApiError(String error) {
+        if (error != null) {
+            getMvpView().onError(error);
+        }
+    }
+
+
+    void updateApiHeader(String params) {
+        getCompositeDisposable().add(getDataManager()
+                .doHandShakeStartApiCall(initHandShake().toJSONString())
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(response -> {
+                    System.out.println("updateToken:" + response.toString());
+
+                    getDataManager().updateApiHeader(
+                            response.getAesKey(),
+                            response.getAesIV(),
+                            response.getAuthorization()
+                    );
+
+                    callBackApi.callBackFunc(params);
+                }, throwable -> {
+                }));
+    }
+
+    private HandShakeRequest initHandShake() {
+        return new HandShakeRequest(
+                DeviceAndSystemInfoUtils.getInstance(null).getDeviceId(),
+                DeviceAndSystemInfoUtils.getInstance(null).getAppVersionName(),
+                DeviceAndSystemInfoUtils.getInstance(null).getPlatformName(),
+                DeviceAndSystemInfoUtils.getInstance(null).getDeviceName(),
+                DeviceAndSystemInfoUtils.getInstance(null).getManufacturer()
+        );
     }
 
 }

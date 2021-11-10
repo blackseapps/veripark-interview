@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -40,7 +41,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     LineChart chart;
 
     @BindView(R.id.isUp)
-    TextView isUp;
+    ImageView isUp;
 
     @BindView(R.id.change)
     TextView change;
@@ -88,8 +89,6 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
 
         String Id = getIntentData("Id");
         mPresenter.onHandleDetailRequest(Id);
-
-
     }
 
     @Override
@@ -107,7 +106,9 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     @Override
     public void updateDetailItemData(DetailResponse detailResponse) {
 
-        isUp.setText(getResources().getString(R.string.isUp_text) + ": " + detailResponse.isUp());
+        isUp.setBackground(detailResponse.isUp() ? getResources().getDrawable(R.drawable.ic_baseline_keyboard_arrow_up_24)
+                : getResources().getDrawable(R.drawable.ic_baseline_keyboard_arrow_down_24));
+
         change.setText(getResources().getString(R.string.change_text) + ": " + detailResponse.getChannge());
         offer.setText(getResources().getString(R.string.offer_text) + ": " + detailResponse.getOffer());
         highest.setText(getResources().getString(R.string.highest_text) + ": " + detailResponse.getHighest());
@@ -117,8 +118,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
         minimum.setText(getResources().getString(R.string.minimum_text) + ": " + detailResponse.getMinimum());
         price.setText(getResources().getString(R.string.price_text) + ": " + detailResponse.getPrice());
         volume.setText(getResources().getString(R.string.volume_text) + ": " + detailResponse.getVolume());
-        symbol.setText(getResources().getString(R.string.symbol_text) + ": " +   mPresenter.getAesDecryptValue(detailResponse.getSymbol()));
-
+        symbol.setText(getResources().getString(R.string.symbol_text) + ": " + mPresenter.getAesDecryptValue(detailResponse.getSymbol()));
     }
 
     @Override

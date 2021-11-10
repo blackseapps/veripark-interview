@@ -13,17 +13,17 @@ public class Status {
 
     @SerializedName("isSuccess")
     @Expose
-    private Boolean isSuccess;
+    private boolean isSuccess;
 
     @SerializedName("error")
     @Expose
     private ErrorM error;
 
-    public Boolean getIsSuccess() {
+    public boolean getIsSuccess() {
         return isSuccess;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
+    public void setIsSuccess(boolean isSuccess) {
         this.isSuccess = isSuccess;
     }
 
@@ -40,22 +40,22 @@ public class Status {
 
         @SerializedName("code")
         @Expose
-        private Integer code;
+        private int code;
 
         @SerializedName("message")
         @Expose
         private String message;
 
-        public ErrorM(Integer code, String message) {
+        public ErrorM(int code, String message) {
             this.code = code;
             this.message = message;
         }
 
-        public Integer getCode() {
+        public int getCode() {
             return code;
         }
 
-        public void setCode(Integer code) {
+        public void setCode(int code) {
             this.code = code;
         }
 

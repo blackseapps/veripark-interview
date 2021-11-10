@@ -39,9 +39,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseMvpV
 
     private ProgressDialog mProgressDialog;
 
-    // @Inject
-    ApiHeader.ProtectedApiHeader protectedApiHeader;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

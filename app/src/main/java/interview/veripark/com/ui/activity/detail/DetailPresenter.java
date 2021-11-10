@@ -45,11 +45,16 @@ public class DetailPresenter<V extends DetailMvpView> extends BasePresenter<V>
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(response -> {
 
-                    System.out.println("graph: " + response.getGraphicData().get(0).getValue());
+                    if (response.getStatus().getIsSuccess()) {
+                        System.out.println("graph: " + response.getGraphicData().get(0).getValue());
 
-                    if (response != null && response.getSymbol() != null) {
-                        getMvpView().updateDetailItemData(response);
-                        getMvpView().updateDetailChartData(initGraphData(response.getGraphicData()));
+                        if (response != null && response.getSymbol() != null) {
+                            getMvpView().updateDetailItemData(response);
+                            getMvpView().updateDetailChartData(initGraphData(response.getGraphicData()));
+                        }
+                    } else {
+                        handleApiError(response.getStatus(), this::onHandleDetailRequest, value);
+                        System.out.println("response" + response.getStatus().getError().getMessage());
                     }
 
                     if (!isViewAttached()) {

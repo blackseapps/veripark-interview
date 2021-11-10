@@ -9,4 +9,6 @@ package interview.veripark.com.utils;
 public class AppConstants {
 
     public static final String PREF_NAME = "veryPark_pref";
+
+    public static final int HTTP_UNAUTHORIZED = 2;
 }

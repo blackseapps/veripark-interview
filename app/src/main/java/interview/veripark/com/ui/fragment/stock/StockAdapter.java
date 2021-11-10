@@ -175,6 +175,7 @@ public class StockAdapter extends RecyclerView.Adapter<BaseViewHolder> implement
                     columnSeven.setVisibility(View.VISIBLE);
                     itemView.setBackgroundColor(itemView.getResources().getColor(R.color.tableRowsTitle));
                     columnOne.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+                    columnFour.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
                 } else {
                     StockResponse.Stock item = stockList.get(position);
 

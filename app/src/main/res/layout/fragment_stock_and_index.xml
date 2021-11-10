@@ -7,8 +7,12 @@
     <EditText
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Search..." />
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="@string/search_text"
+        android:paddingLeft="10dp"
+        android:textSize="13sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/stockRecyclerView"
