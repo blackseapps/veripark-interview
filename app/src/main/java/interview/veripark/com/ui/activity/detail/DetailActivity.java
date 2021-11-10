@@ -46,6 +46,9 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     @BindView(R.id.change)
     TextView change;
 
+    @BindView(R.id.bid)
+    TextView bid;
+
     @BindView(R.id.offer)
     TextView offer;
 
@@ -110,6 +113,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
                 : getResources().getDrawable(R.drawable.ic_baseline_keyboard_arrow_down_24));
 
         change.setText(getResources().getString(R.string.change_text) + ": " + detailResponse.getChannge());
+        bid.setText(getResources().getString(R.string.bid_text) + ": " + detailResponse.getBid());
         offer.setText(getResources().getString(R.string.offer_text) + ": " + detailResponse.getOffer());
         highest.setText(getResources().getString(R.string.highest_text) + ": " + detailResponse.getHighest());
         lowest.setText(getResources().getString(R.string.lowest_text) + ": " + detailResponse.getLowest());

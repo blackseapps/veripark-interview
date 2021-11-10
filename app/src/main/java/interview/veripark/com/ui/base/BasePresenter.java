@@ -102,6 +102,8 @@ public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V>
     @Override
     public void handleApiError(Status error, CallBackApi callBackApi, String params) {
 
+        this.callBackApi = callBackApi;
+
         if (error == null || error.getError().getMessage() == null) {
             getMvpView().onError(R.string.error_message);
             return;
