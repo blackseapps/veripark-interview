@@ -10,9 +10,4 @@ import interview.veripark.com.ui.base.BaseMvpView;
 
 public interface MainMvpView extends BaseMvpView {
 
-    void showAddingFragment();
-
-    void showListingFragment();
-
-
 }

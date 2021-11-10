@@ -1,14 +1,10 @@
 package interview.veripark.com.ui.fragment.stock;
 
-import java.util.List;
 
 import javax.inject.Inject;
 
 import interview.veripark.com.data.DataManager;
-import interview.veripark.com.data.network.model.ApiError;
-import interview.veripark.com.data.network.model.DetailResponse;
 import interview.veripark.com.data.network.model.StockRequest;
-import interview.veripark.com.ui.base.BaseMvpPresenter;
 import interview.veripark.com.ui.base.BasePresenter;
 import interview.veripark.com.utils.rx.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
@@ -63,12 +59,8 @@ public class StockAndIndexPresenter<V extends StockAndIndexMvpView> extends Base
                     }
 
                     getMvpView().hideLoading();
-                    System.out.println("throwable2 :" + throwable.getMessage());
+                    handleApiError(throwable.getMessage());
 
-                    // if (throwable instanceof ApiError) {
-                    //     ApiError anError = (ApiError) throwable;
-                    ///     handleApiError(anError);
-                    /// }
                 }));
     }
 

@@ -8,9 +8,6 @@ import javax.inject.Inject;
 import interview.veripark.com.data.DataManager;
 import interview.veripark.com.data.network.model.DetailRequest;
 import interview.veripark.com.data.network.model.DetailResponse;
-import interview.veripark.com.data.network.model.HandShakeRequest;
-import interview.veripark.com.ui.activity.splash.SplashMvpPresenter;
-import interview.veripark.com.ui.activity.splash.SplashMvpView;
 import interview.veripark.com.ui.base.BasePresenter;
 import interview.veripark.com.utils.rx.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
@@ -70,13 +67,14 @@ public class DetailPresenter<V extends DetailMvpView> extends BasePresenter<V>
 
                     getMvpView().hideLoading();
 
+                    handleApiError(throwable.getMessage());
+
                 }));
     }
 
     private DetailRequest initDetailRequest(String value) {
         return new DetailRequest(getAesEncryptValue(value));
     }
-
 
     ArrayList<Float> initGraphData(List<DetailResponse.GraphicDatum> graphicDatum) {
         ArrayList<Float> data = new ArrayList<>();

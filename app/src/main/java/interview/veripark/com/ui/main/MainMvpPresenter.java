@@ -10,8 +10,5 @@ import interview.veripark.com.ui.base.BaseMvpPresenter;
 
 public interface MainMvpPresenter<V extends MainMvpView> extends BaseMvpPresenter<V> {
 
-    void onOpenAddingFragment();
-
-    void onOpenListingFragment();
 
 }

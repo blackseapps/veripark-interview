@@ -21,13 +21,4 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         super(dataManager, schedulerProvider, compositeDisposable);
     }
 
-    @Override
-    public void onOpenAddingFragment() {
-        getMvpView().showAddingFragment();
-    }
-
-    @Override
-    public void onOpenListingFragment() {
-        getMvpView().showListingFragment();
-    }
 }

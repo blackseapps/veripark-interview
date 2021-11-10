@@ -33,5 +33,4 @@ public interface ApiEndPointService {
     @Headers({"Content-Type: application/json"})
     Observable<DetailResponse> getEndPointDetailService(@Body String request);
 
-
 }

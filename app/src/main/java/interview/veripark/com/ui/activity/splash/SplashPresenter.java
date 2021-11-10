@@ -1,20 +1,14 @@
 package interview.veripark.com.ui.activity.splash;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
+
 
 import javax.inject.Inject;
 
 import interview.veripark.com.data.DataManager;
 import interview.veripark.com.data.network.model.HandShakeRequest;
-import interview.veripark.com.data.network.model.HandShakeResponse;
 import interview.veripark.com.ui.base.BasePresenter;
-import interview.veripark.com.utils.DeviceAndSystemInfoUtils;
 import interview.veripark.com.utils.rx.SchedulerProvider;
-import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 
 /**
  * Created by mertKaradeniz on 7.11.2021

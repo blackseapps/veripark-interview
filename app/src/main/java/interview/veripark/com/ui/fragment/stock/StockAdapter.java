@@ -112,10 +112,6 @@ public class StockAdapter extends RecyclerView.Adapter<BaseViewHolder> implement
 
 
     public interface Callback {
-        void onRetryClick();
-
-        void onItemClick(StockResponse.Stock product);
-
         String getAesDecrypt(String value);
     }
 

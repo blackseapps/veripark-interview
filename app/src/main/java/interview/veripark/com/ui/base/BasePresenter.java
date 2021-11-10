@@ -110,7 +110,6 @@ public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V>
         }
 
         try {
-
             switch (error.getError().getCode()) {
                 case AppConstants.HTTP_UNAUTHORIZED:
                     getMvpView().onError("Authorization Token Updated.");
@@ -121,7 +120,7 @@ public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V>
             }
         } catch (JsonSyntaxException | NullPointerException e) {
             Log.e(TAG, "handleApiError", e);
-            // getMvpView().onError(R.string.api_default_error);
+             getMvpView().onError(R.string.error_message);
         }
     }
 

@@ -131,16 +131,6 @@ public class StockAndIndexFragment extends BaseFragment implements StockAndIndex
     }
 
     @Override
-    public void onRetryClick() {
-
-    }
-
-    @Override
-    public void onItemClick(StockResponse.Stock product) {
-
-    }
-
-    @Override
     public String getAesDecrypt(String value) {
         return mPresenter.getAesDecryptValue(value);
     }

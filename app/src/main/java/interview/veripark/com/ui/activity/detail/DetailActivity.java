@@ -129,9 +129,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     public void updateDetailChartData(ArrayList<Float> graphicDatum) {
         LineChartDetail detail = new LineChartDetail(this, chart);
         detail.initChart();
-        float[] range = new float[]{10, 20, 30, 40, 50};
         detail.setData(graphicDatum);
     }
-
 
 }

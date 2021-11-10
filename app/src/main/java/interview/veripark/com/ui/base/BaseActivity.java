@@ -19,7 +19,6 @@ import com.google.android.material.snackbar.Snackbar;
 import butterknife.Unbinder;
 import interview.veripark.com.MainApplication;
 import interview.veripark.com.R;
-import interview.veripark.com.data.network.ApiHeader;
 import interview.veripark.com.di.component.ActivityComponent;
 import interview.veripark.com.di.component.DaggerActivityComponent;
 import interview.veripark.com.di.module.ActivityModule;
@@ -34,9 +33,7 @@ import interview.veripark.com.utils.CommonUtils;
 public abstract class BaseActivity extends AppCompatActivity implements BaseMvpView, BaseFragment.Callback {
 
     private Unbinder mUnBinder;
-
     private ActivityComponent mActivityComponent;
-
     private ProgressDialog mProgressDialog;
 
     @Override

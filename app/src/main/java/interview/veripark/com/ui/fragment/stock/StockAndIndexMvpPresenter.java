@@ -1,6 +1,6 @@
 package interview.veripark.com.ui.fragment.stock;
 
-import interview.veripark.com.data.network.model.StockRequest;
+
 import interview.veripark.com.ui.base.BaseMvpPresenter;
 
 /**

@@ -78,15 +78,7 @@ public class MainActivity extends BaseActivity implements MainMvpView, Navigatio
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    @Override
-    public void showAddingFragment() {
 
-    }
-
-    @Override
-    public void showListingFragment() {
-
-    }
 
     @SuppressLint("NonConstantResourceId")
     @Override

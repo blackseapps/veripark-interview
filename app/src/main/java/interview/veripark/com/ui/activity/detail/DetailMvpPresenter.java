@@ -1,8 +1,5 @@
 package interview.veripark.com.ui.activity.detail;
 
-import interview.veripark.com.data.network.model.DetailRequest;
-import interview.veripark.com.data.network.model.HandShakeRequest;
-import interview.veripark.com.ui.activity.splash.SplashMvpView;
 import interview.veripark.com.ui.base.BaseMvpPresenter;
 
 /**

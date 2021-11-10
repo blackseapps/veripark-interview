@@ -1,7 +1,6 @@
 package interview.veripark.com.ui.activity.detail;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import interview.veripark.com.data.network.model.DetailResponse;
 import interview.veripark.com.ui.base.BaseMvpView;

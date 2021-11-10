@@ -57,12 +57,6 @@ dependencies {
     // Interceptor
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.interceptor"
 
-    // database
-    implementation "org.greenrobot:greendao:$rootProject.ext.greenDaoVersion"
-
-    // debug database
-    debugImplementation "com.amitshekhar.android:debug-db:$rootProject.ext.debugDBVersion"
-
     // dependency injection
     implementation "com.google.dagger:dagger:$rootProject.ext.dagger2Version"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
@@ -83,10 +77,4 @@ dependencies {
     testAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
 
     implementation 'org.bouncycastle:bcprov-jdk15on:1.65'
-
-    // UI Testing
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
-    androidTestImplementation "org.mockito:mockito-core:$rootProject.ext.mockitoVersion"
-    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
 }
