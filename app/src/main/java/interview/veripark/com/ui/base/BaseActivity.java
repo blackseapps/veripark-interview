@@ -1,5 +1,6 @@
 package interview.veripark.com.ui.base;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -15,11 +16,10 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import javax.inject.Inject;
-
 import butterknife.Unbinder;
 import interview.veripark.com.MainApplication;
 import interview.veripark.com.R;
+import interview.veripark.com.data.network.ApiHeader;
 import interview.veripark.com.di.component.ActivityComponent;
 import interview.veripark.com.di.component.DaggerActivityComponent;
 import interview.veripark.com.di.module.ActivityModule;
@@ -37,6 +37,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseMvpV
 
     private ActivityComponent mActivityComponent;
 
+    private ProgressDialog mProgressDialog;
+
+    // @Inject
+    ApiHeader.ProtectedApiHeader protectedApiHeader;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,13 +69,17 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseMvpV
 
     @Override
     public void showLoading() {
-
+        hideLoading();
+        mProgressDialog = CommonUtils.showLoadingDialog(this);
     }
 
     @Override
     public void hideLoading() {
-
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.cancel();
+        }
     }
+
 
     @Override
     public void openActivityOnTokenExpire() {
@@ -134,10 +142,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseMvpV
         super.onDestroy();
     }
 
-    public <T> T getIntentData(String key) {
+    public String getIntentData(String key) {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            return getIntent().getExtras().getParcelable(key);
+            return getIntent().getExtras().getString(key);
         } else
             return null;
     }

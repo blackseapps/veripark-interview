@@ -12,4 +12,8 @@ public interface BaseMvpPresenter<V extends BaseMvpView> {
 
     void onDetach();
 
+    String getAesEncryptValue(String value);
+
+    String getAesDecryptValue(String value);
+
 }

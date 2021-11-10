@@ -3,6 +3,7 @@ package interview.veripark.com.ui.base;
 import javax.inject.Inject;
 
 import interview.veripark.com.data.DataManager;
+import interview.veripark.com.utils.AESUtils;
 import interview.veripark.com.utils.rx.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -56,6 +57,28 @@ public class BasePresenter<V extends BaseMvpView> implements BaseMvpPresenter<V>
     public void onDetach() {
         mCompositeDisposable.dispose();
         mMvpView = null;
+    }
+
+    public String getAesEncryptValue(String value) {
+        String output = "";
+        try {
+            byte[] encoded = AESUtils.encrypt(getDataManager().getAesKey(), getDataManager().getAesVI(), value);
+            output = AESUtils.converterByteToString(encoded);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    public String getAesDecryptValue(String cipherText) {
+        String output = "";
+        try {
+            byte[] aesKeyBytes = android.util.Base64.decode(cipherText, android.util.Base64.DEFAULT);
+            output = AESUtils.decrypt(getDataManager().getAesKey(), getDataManager().getAesVI(), aesKeyBytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return output;
     }
 
 }

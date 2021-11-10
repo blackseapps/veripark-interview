@@ -10,6 +10,7 @@ import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 
 import butterknife.Unbinder;
+import interview.veripark.com.data.network.ApiHeader;
 import interview.veripark.com.di.component.ActivityComponent;
 import interview.veripark.com.utils.CommonUtils;
 
@@ -24,6 +25,9 @@ public abstract class BaseFragment extends Fragment implements BaseMvpView {
     private BaseActivity mActivity;
     private Unbinder mUnBinder;
     private ProgressDialog mProgressDialog;
+
+    //@Inject
+    ApiHeader.ProtectedApiHeader protectedApiHeader;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -120,6 +124,7 @@ public abstract class BaseFragment extends Fragment implements BaseMvpView {
         }
         super.onDestroy();
     }
+
 
     public void setUnBinder(Unbinder unBinder) {
         mUnBinder = unBinder;

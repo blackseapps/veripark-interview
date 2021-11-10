@@ -13,5 +13,5 @@ import interview.veripark.com.ui.base.BaseMvpPresenter;
 
 public interface DetailMvpPresenter<V extends DetailMvpView> extends BaseMvpPresenter<V> {
 
-    void onHandleDetailRequest(DetailRequest request);
+    void onHandleDetailRequest(String request);
 }

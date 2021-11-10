@@ -5,9 +5,10 @@
     android:orientation="vertical">
 
     <EditText
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search..." />
+        android:hint="Search..." />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/stockRecyclerView"

@@ -6,8 +6,6 @@ import com.google.gson.annotations.SerializedName;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import interview.veripark.com.utils.AESUtils;
-
 /**
  * Created by mertKaradeniz on 7.11.2021
  * <p>
@@ -18,26 +16,25 @@ public class DetailRequest {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private String id;
 
-    public DetailRequest(Integer id) {
+    public DetailRequest(String id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int String) {
         this.id = id;
     }
 
 
-    public String toJSONStringAndEncoded(String aesKey, String aesVI) {
+    public String toJSONStringAndEncoded() {
         JSONObject js = new JSONObject();
         try {
-            byte[] encoded = AESUtils.encrypt(aesKey, aesVI, String.valueOf(getId()));
-            js.put("id", AESUtils.converterByteToString(encoded));
+            js.put("id", getId());
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (Exception e) {

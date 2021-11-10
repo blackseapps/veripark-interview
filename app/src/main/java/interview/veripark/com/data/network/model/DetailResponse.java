@@ -15,55 +15,55 @@ public class DetailResponse {
 
     @SerializedName("isDown")
     @Expose
-    private Boolean isDown;
+    private boolean isDown;
 
     @SerializedName("isUp")
     @Expose
-    private Boolean isUp;
+    private boolean isUp;
 
     @SerializedName("bid")
     @Expose
-    private Double bid;
+    private double bid;
 
     @SerializedName("channge")
     @Expose
-    private Double channge;
+    private double channge;
 
     @SerializedName("count")
     @Expose
-    private Integer count;
+    private int count;
 
     @SerializedName("difference")
     @Expose
-    private Double difference;
+    private double difference;
 
     @SerializedName("offer")
     @Expose
-    private Double offer;
+    private double offer;
 
     @SerializedName("highest")
     @Expose
-    private Double highest;
+    private double highest;
 
     @SerializedName("lowest")
     @Expose
-    private Double lowest;
+    private double lowest;
 
     @SerializedName("maximum")
     @Expose
-    private Double maximum;
+    private double maximum;
 
     @SerializedName("minimum")
     @Expose
-    private Double minimum;
+    private double minimum;
 
     @SerializedName("price")
     @Expose
-    private Double price;
+    private double price;
 
     @SerializedName("volume")
     @Expose
-    private Double volume;
+    private double volume;
 
     @SerializedName("symbol")
     @Expose
@@ -77,107 +77,107 @@ public class DetailResponse {
     @Expose
     private Status status;
 
-    public Boolean getIsDown() {
+    public boolean isDown() {
         return isDown;
     }
 
-    public void setIsDown(Boolean isDown) {
-        this.isDown = isDown;
+    public void setDown(boolean down) {
+        isDown = down;
     }
 
-    public Boolean getIsUp() {
+    public boolean isUp() {
         return isUp;
     }
 
-    public void setIsUp(Boolean isUp) {
-        this.isUp = isUp;
+    public void setUp(boolean up) {
+        isUp = up;
     }
 
-    public Double getBid() {
+    public double getBid() {
         return bid;
     }
 
-    public void setBid(Double bid) {
+    public void setBid(double bid) {
         this.bid = bid;
     }
 
-    public Double getChannge() {
+    public double getChannge() {
         return channge;
     }
 
-    public void setChannge(Double channge) {
+    public void setChannge(double channge) {
         this.channge = channge;
     }
 
-    public Integer getCount() {
+    public int getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(int count) {
         this.count = count;
     }
 
-    public Double getDifference() {
+    public double getDifference() {
         return difference;
     }
 
-    public void setDifference(Double difference) {
+    public void setDifference(double difference) {
         this.difference = difference;
     }
 
-    public Double getOffer() {
+    public double getOffer() {
         return offer;
     }
 
-    public void setOffer(Double offer) {
+    public void setOffer(double offer) {
         this.offer = offer;
     }
 
-    public Double getHighest() {
+    public double getHighest() {
         return highest;
     }
 
-    public void setHighest(Double highest) {
+    public void setHighest(double highest) {
         this.highest = highest;
     }
 
-    public Double getLowest() {
+    public double getLowest() {
         return lowest;
     }
 
-    public void setLowest(Double lowest) {
+    public void setLowest(double lowest) {
         this.lowest = lowest;
     }
 
-    public Double getMaximum() {
+    public double getMaximum() {
         return maximum;
     }
 
-    public void setMaximum(Double maximum) {
+    public void setMaximum(double maximum) {
         this.maximum = maximum;
     }
 
-    public Double getMinimum() {
+    public double getMinimum() {
         return minimum;
     }
 
-    public void setMinimum(Double minimum) {
+    public void setMinimum(double minimum) {
         this.minimum = minimum;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public Double getVolume() {
+    public double getVolume() {
         return volume;
     }
 
-    public void setVolume(Double volume) {
+    public void setVolume(double volume) {
         this.volume = volume;
     }
 
@@ -209,25 +209,25 @@ public class DetailResponse {
 
         @SerializedName("day")
         @Expose
-        private Integer day;
+        private int day;
 
         @SerializedName("value")
         @Expose
-        private Double value;
+        private float value;
 
-        public Integer getDay() {
+        public int getDay() {
             return day;
         }
 
-        public void setDay(Integer day) {
+        public void setDay(int day) {
             this.day = day;
         }
 
-        public Double getValue() {
+        public float getValue() {
             return value;
         }
 
-        public void setValue(Double value) {
+        public void setValue(float value) {
             this.value = value;
         }
 

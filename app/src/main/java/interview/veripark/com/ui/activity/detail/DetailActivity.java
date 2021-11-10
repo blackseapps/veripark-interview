@@ -1,16 +1,25 @@
 package interview.veripark.com.ui.activity.detail;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import interview.veripark.com.R;
+import interview.veripark.com.data.network.ApiHeader;
+import interview.veripark.com.data.network.model.DetailRequest;
+import interview.veripark.com.data.network.model.DetailResponse;
+import interview.veripark.com.data.network.model.StockRequest;
 import interview.veripark.com.ui.activity.splash.SplashActivity;
 import interview.veripark.com.ui.base.BaseActivity;
 import interview.veripark.com.ui.component.LineChartDetail;
@@ -30,6 +39,39 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     @BindView(R.id.chart1)
     LineChart chart;
 
+    @BindView(R.id.isUp)
+    TextView isUp;
+
+    @BindView(R.id.change)
+    TextView change;
+
+    @BindView(R.id.offer)
+    TextView offer;
+
+    @BindView(R.id.highest)
+    TextView highest;
+
+    @BindView(R.id.lowest)
+    TextView lowest;
+
+    @BindView(R.id.maximum)
+    TextView maximum;
+
+    @BindView(R.id.minimum)
+    TextView minimum;
+
+    @BindView(R.id.price)
+    TextView price;
+
+    @BindView(R.id.volume)
+    TextView volume;
+
+    @BindView(R.id.symbol)
+    TextView symbol;
+
+    @BindView(R.id.count)
+    TextView count;
+
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, DetailActivity.class);
         return intent;
@@ -44,10 +86,10 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
         setUnBinder(ButterKnife.bind(this));
         mPresenter.onAttach(this);
 
-        LineChartDetail detail = new LineChartDetail(this, chart);
-        detail.initChart();
-        float[] range = new float[]{10, 20, 30, 40, 50};
-        detail.setData(range);
+        String Id = getIntentData("Id");
+        mPresenter.onHandleDetailRequest(Id);
+
+
     }
 
     @Override
@@ -59,4 +101,33 @@ public class DetailActivity extends BaseActivity implements DetailMvpView {
     @Override
     protected void setUp() {
     }
+
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void updateDetailItemData(DetailResponse detailResponse) {
+
+        isUp.setText(getResources().getString(R.string.isUp_text) + ": " + detailResponse.isUp());
+        change.setText(getResources().getString(R.string.change_text) + ": " + detailResponse.getChannge());
+        offer.setText(getResources().getString(R.string.offer_text) + ": " + detailResponse.getOffer());
+        highest.setText(getResources().getString(R.string.highest_text) + ": " + detailResponse.getHighest());
+        lowest.setText(getResources().getString(R.string.lowest_text) + ": " + detailResponse.getLowest());
+        count.setText(getResources().getString(R.string.count_text) + ": " + detailResponse.getCount());
+        maximum.setText(getResources().getString(R.string.maximum_text) + ": " + detailResponse.getMaximum());
+        minimum.setText(getResources().getString(R.string.minimum_text) + ": " + detailResponse.getMinimum());
+        price.setText(getResources().getString(R.string.price_text) + ": " + detailResponse.getPrice());
+        volume.setText(getResources().getString(R.string.volume_text) + ": " + detailResponse.getVolume());
+        symbol.setText(getResources().getString(R.string.symbol_text) + ": " +   mPresenter.getAesDecryptValue(detailResponse.getSymbol()));
+
+    }
+
+    @Override
+    public void updateDetailChartData(ArrayList<Float> graphicDatum) {
+        LineChartDetail detail = new LineChartDetail(this, chart);
+        detail.initChart();
+        float[] range = new float[]{10, 20, 30, 40, 50};
+        detail.setData(graphicDatum);
+    }
+
+
 }

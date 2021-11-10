@@ -46,101 +46,101 @@ public class StockResponse {
 
         @SerializedName("id")
         @Expose
-        private Integer id;
+        private int id;
 
         @SerializedName("isDown")
         @Expose
-        private Boolean isDown;
+        private boolean isDown;
 
         @SerializedName("isUp")
         @Expose
-        private Boolean isUp;
+        private boolean isUp;
 
         @SerializedName("bid")
         @Expose
-        private Double bid;
+        private double bid;
 
         @SerializedName("difference")
         @Expose
-        private Double difference;
+        private double difference;
 
         @SerializedName("offer")
         @Expose
-        private Double offer;
+        private double offer;
 
         @SerializedName("price")
         @Expose
-        private Double price;
+        private double price;
 
         @SerializedName("volume")
         @Expose
-        private Double volume;
+        private double volume;
 
         @SerializedName("symbol")
         @Expose
         private String symbol;
 
-        public Integer getId() {
+        public int getId() {
             return id;
         }
 
-        public void setId(Integer id) {
+        public void setId(int id) {
             this.id = id;
         }
 
-        public Boolean getIsDown() {
+        public boolean isDown() {
             return isDown;
         }
 
-        public void setIsDown(Boolean isDown) {
-            this.isDown = isDown;
+        public void setDown(boolean down) {
+            isDown = down;
         }
 
-        public Boolean getIsUp() {
+        public boolean isUp() {
             return isUp;
         }
 
-        public void setIsUp(Boolean isUp) {
-            this.isUp = isUp;
+        public void setUp(boolean up) {
+            isUp = up;
         }
 
-        public Double getBid() {
+        public double getBid() {
             return bid;
         }
 
-        public void setBid(Double bid) {
+        public void setBid(double bid) {
             this.bid = bid;
         }
 
-        public Double getDifference() {
+        public double getDifference() {
             return difference;
         }
 
-        public void setDifference(Double difference) {
+        public void setDifference(double difference) {
             this.difference = difference;
         }
 
-        public Double getOffer() {
+        public double getOffer() {
             return offer;
         }
 
-        public void setOffer(Double offer) {
+        public void setOffer(double offer) {
             this.offer = offer;
         }
 
-        public Double getPrice() {
+        public double getPrice() {
             return price;
         }
 
-        public void setPrice(Double price) {
+        public void setPrice(double price) {
             this.price = price;
         }
 
-        public Double getVolume() {
+        public double getVolume() {
             return volume;
         }
 
-        public void setVolume(Double volume) {
+        public void setVolume(double volume) {
             this.volume = volume;
         }
 

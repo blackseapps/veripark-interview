@@ -1,5 +1,6 @@
 package interview.veripark.com.ui.component;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
@@ -60,7 +61,7 @@ public class LineChartDetail implements OnChartValueSelectedListener {
         chart.setDragEnabled(true);
         chart.setScaleEnabled(true);
         chart.setPinchZoom(true);
-        chart.animateX(1500);
+        chart.animateX(500);
 
         XAxis xAxis;
         xAxis = chart.getXAxis();
@@ -93,12 +94,13 @@ public class LineChartDetail implements OnChartValueSelectedListener {
         l.setForm(Legend.LegendForm.LINE);
     }
 
-    public void setData(float[] range) {
+    @SuppressLint("UseCompatLoadingForDrawables")
+    public void setData(ArrayList<Float> range) {
 
         ArrayList<Entry> values = new ArrayList<>();
 
-        for (int i = 0; i < range.length; i++) {
-            float val = (float) range[i];
+        for (int i = 0; i < range.size(); i++) {
+            float val = (float) range.get(i);
             values.add(new Entry(i, val, context.getResources().getDrawable(R.drawable.chart_line_star)));
         }
 

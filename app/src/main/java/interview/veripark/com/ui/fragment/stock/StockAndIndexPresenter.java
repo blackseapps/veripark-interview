@@ -1,8 +1,11 @@
 package interview.veripark.com.ui.fragment.stock;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import interview.veripark.com.data.DataManager;
+import interview.veripark.com.data.network.model.DetailResponse;
 import interview.veripark.com.data.network.model.StockRequest;
 import interview.veripark.com.ui.base.BasePresenter;
 import interview.veripark.com.utils.rx.SchedulerProvider;
@@ -23,11 +26,11 @@ public class StockAndIndexPresenter<V extends StockAndIndexMvpView> extends Base
     }
 
     @Override
-    public void onHandleStockRequest(StockRequest stockRequest) {
+    public void onHandleStockRequest(String value) {
         getMvpView().showLoading();
 
         getCompositeDisposable().add(getDataManager()
-                .doStockResponseApiCall(stockRequest.toJSONStringAndEncoded(getDataManager().getAesKey(), getDataManager().getAesVI()))
+                .doStockResponseApiCall(initStockRequest(value).toJSONStringAndEncoded())
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(response -> {
@@ -38,12 +41,6 @@ public class StockAndIndexPresenter<V extends StockAndIndexMvpView> extends Base
                     if (response != null && response.getStocks() != null) {
                         getMvpView().updateStocks(response.getStocks());
                     }
-
-                   /* getDataManager().updateApiHeader(
-                            response.getAesKey(),
-                            response.getAesIV(),
-                            response.getAuthorization()
-                    );*/
 
                     if (!isViewAttached()) {
                         return;
@@ -58,4 +55,9 @@ public class StockAndIndexPresenter<V extends StockAndIndexMvpView> extends Base
                     getMvpView().hideLoading();
                 }));
     }
+
+    private StockRequest initStockRequest(String value) {
+        return new StockRequest(getAesEncryptValue(value));
+    }
+
 }

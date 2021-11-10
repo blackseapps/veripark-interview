@@ -2,11 +2,14 @@ package interview.veripark.com.ui.fragment.stock;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -41,7 +44,7 @@ import interview.veripark.com.utils.DeviceAndSystemInfoUtils;
  * This is an interview project.
  */
 
-public class StockAndIndexFragment extends BaseFragment implements StockAndIndexMvpView {
+public class StockAndIndexFragment extends BaseFragment implements StockAndIndexMvpView, StockAdapter.Callback {
 
     public static final String TAG = "AddingFragment";
 
@@ -50,13 +53,17 @@ public class StockAndIndexFragment extends BaseFragment implements StockAndIndex
     StockAndIndexMvpPresenter<StockAndIndexMvpView> mPresenter;
 
     @Inject
-    StockAdapter listingAdapter;
+    StockAdapter stockAdapter;
 
     @Inject
     LinearLayoutManager mLayoutManager;
 
     @BindView(R.id.stockRecyclerView)
     RecyclerView mRecyclerView;
+
+    @BindView(R.id.search_bar)
+    EditText search_bar;
+
 
     public static StockAndIndexFragment newInstance(Bundle args) {
         StockAndIndexFragment fragment = new StockAndIndexFragment();
@@ -75,22 +82,40 @@ public class StockAndIndexFragment extends BaseFragment implements StockAndIndex
             component.inject(this);
             setUnBinder(ButterKnife.bind(this, view));
             mPresenter.onAttach(this);
+            stockAdapter.setCallback(this);
             setHasOptionsMenu(true);
         }
         String data = getBundleData("value");
 
-        Log.i("Data", data);
-
-        mPresenter.onHandleStockRequest(initStockRequest(data));
+        mPresenter.onHandleStockRequest(data);
         return view;
     }
 
     @Override
     protected void setUp(View view) {
+
+        search_bar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if (s.length() != 0)
+                    stockAdapter.getFilter().filter(s);
+            }
+        });
+
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(listingAdapter);
+        mRecyclerView.setAdapter(stockAdapter);
     }
 
 
@@ -99,62 +124,26 @@ public class StockAndIndexFragment extends BaseFragment implements StockAndIndex
 
     }
 
-    private StockRequest initStockRequest(String value) {
-        return new StockRequest(value);
-    }
 
     @Override
     public void updateStocks(List<StockResponse.Stock> response) {
+        stockAdapter.addItems(response);
+    }
 
-        listingAdapter.addItems(response);
-
-        // parentLayout.addView(createTableLayout(getDataInit(), 7));
+    @Override
+    public void onRetryClick() {
 
     }
 
+    @Override
+    public void onItemClick(StockResponse.Stock product) {
 
-    private String[][] getDataInit(List<StockResponse.Stock> extraData) {
-        String[][] data = new String[][]{{"Sembol", "Fiyat", "Fark", "Hacim", "Alış", "Satış", "Değişim"}};
+    }
 
-        String[][] tempData = null;
-
-
-        // Collections.addAll(data, new String[][]);
-
-
-        return data;
+    @Override
+    public String getAesDecrypt(String value) {
+        return mPresenter.getAesDecryptValue(value);
     }
 
 
-    private TableLayout createTableLayout(String[][] data, int columnCount) {
-        // 1) Create a tableLayout and its params
-        TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams();
-        TableLayout tableLayout = new TableLayout(getContext());
-        //  tableLayout.setBackgroundColor(Color.BLACK);
-
-        // 2) create tableRow params
-        TableRow.LayoutParams tableRowParams = new TableRow.LayoutParams();
-        tableRowParams.weight = 1;
-
-        for (int i = 0; i < data.length; i++) {
-            // 3) create tableRow
-            TableRow tableRow = new TableRow(getContext());
-            // tableRow.setBackgroundColor(Color.BLACK);
-            for (int j = 0; j < columnCount; j++) {
-                // 4) create textView
-                TextView textView = new TextView(getContext());
-                textView.setGravity(Gravity.CENTER);
-                textView.setPadding(10, 10, 10, 10);
-                //     textView.setBackground(getResources().getDrawable(R.drawable.textview_border));
-                textView.setText(data[i][j]);
-                if (i == 0) {
-                    textView.setBackgroundColor(Color.parseColor("#aeaeae"));
-                }
-                tableRow.addView(textView, tableRowParams);
-            }
-            tableLayout.addView(tableRow, tableLayoutParams);
-        }
-
-        return tableLayout;
-    }
 }

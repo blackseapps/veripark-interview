@@ -11,5 +11,5 @@ import interview.veripark.com.ui.base.BaseMvpPresenter;
 
 public interface StockAndIndexMvpPresenter<V extends StockAndIndexMvpView> extends BaseMvpPresenter<V> {
 
-    void onHandleStockRequest(StockRequest stockRequest);
+    void onHandleStockRequest(String stockRequest);
 }

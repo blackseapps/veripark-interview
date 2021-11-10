@@ -18,6 +18,19 @@
     <string name="filter_volume50">volume50</string>
     <string name="filter_volume100">volume100</string>
 
+    <string name="symbol_text">Symbol</string>
+    <string name="price_text">Fiyat</string>
+    <string name="change_text">% Fark</string>
+    <string name="volume_text">Hacim</string>
+    <string name="bid_text">Alış</string>
+    <string name="offer_text">Satış</string>
+    <string name="lowest_text">Günlük Düşük</string>
+    <string name="highest_text">Günlük Yüksek</string>
+    <string name="count_text">Adet</string>
+    <string name="maximum_text">Tavan</string>
+    <string name="minimum_text">Taban</string>
+    <string name="isUp_text">Değişim</string>
+
     <string name="dash">-</string>
 
 
